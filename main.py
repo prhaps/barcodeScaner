@@ -1,8 +1,11 @@
 import cv2
 from pyzbar import pyzbar
+from time import sleep
 
 # Initialize the camera
 cap = cv2.VideoCapture(0)
+interval = 1
+
 
 while True:
     # Capture a frame from the camera
@@ -28,6 +31,7 @@ while True:
     key = cv2.waitKey(1)
     if key == ord('q'):
         break
+    sleep(interval)
 
 # Release the camera and close all windows
 cap.release()
