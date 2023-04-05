@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-class CameraApp:
+class codeScanner:
     def __init__(self, window):
         self.window = window
         self.cap = None
@@ -19,7 +19,6 @@ class CameraApp:
         self.select_label.pack()
 
         self.camera_list = self.get_camera_list()
-        # self.camera_list = list (map(str, self.get_camera_indexes()))
         self.camera_combobox = ttk.Combobox(self.window, values=self.camera_list)
         self.camera_combobox.current(0)
         self.camera_combobox.pack()
@@ -28,8 +27,9 @@ class CameraApp:
         self.main_button.pack()
 
 
-        self.update_video()
+        self.scan_code()
 
+    # get current device camera index
     def get_camera_list(self):
         index = 0
         camera_list = []
@@ -43,14 +43,12 @@ class CameraApp:
             index += 1
         return camera_list
 
-
+    # control camera switch by button 
     def combine_camera(self):
         if self.cap == None:
             self.open_camera()
-            
         else:
             self.close_camera()
-            
 
 
     def open_camera(self):
@@ -65,7 +63,8 @@ class CameraApp:
         self.cap = None
         self.main_button.config(text="open camera")
 
-    def update_video(self):
+    # read video and capture frame then used to decode
+    def scan_code(self):
         if self.cap is not None:
             ret, frame = self.cap.read()
             if ret:
@@ -88,11 +87,11 @@ class CameraApp:
                 
                 self.label.config(image=photo)
                 self.label.image = photo
-        self.window.after(1000, self.update_video)
+        self.window.after(1000, self.scan_code)
 
 if __name__ == "__main__":
     window = tk.Tk()
     window.title("barcode scanner")
     window.geometry("900x600")
-    app = CameraApp(window)
+    app = codeScanner(window)
     window.mainloop()
