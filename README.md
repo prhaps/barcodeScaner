@@ -11,7 +11,7 @@
 
 # todolist
 
-- [ ] GUI
+- [x] GUI
 - [ ] Installation package
 - [ ] User prompt and error handling
 
