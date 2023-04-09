@@ -3,7 +3,8 @@
 ## Install
 `pip install -r requirements.txt`
 ## Usage
-`python main.py`
+
+`python ./src/main.py`
 
 ## Contribute
 
